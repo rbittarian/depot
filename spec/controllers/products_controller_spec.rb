@@ -3,11 +3,20 @@ require 'spec_helper'
 describe ProductsController do
 	render_views
 	
+	
 	describe "GET 'index'" do
+		
+		before(:each) do
+			@product=Factory(:product)
+		end
 		describe "success" do
 			it "should be successful" do
 				get 'index'
 				response.should be_success
+			end
+			it "should have correct html tags" do
+				get 'index'
+				response.should have_selector("tr")
 			end
 		end
 	end

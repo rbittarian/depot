@@ -39,7 +39,7 @@ describe Product do
   end
 	
 	it "should allow all valid image formats" do
-		valid_format_image_urls= %w[ an.jpg abc.gif images/plastic.PNG]
+		valid_format_image_urls= %w[ an.jpg abc.gif images/plastic.PNG ]
 		valid_format_image_urls.each do |imageurl|
 		  valid_product=Product.new(@attr.merge(:image_url => imageurl))
 		  valid_product.should be_valid
