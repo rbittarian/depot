@@ -13,12 +13,22 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.xml
   def show
-    @product = Product.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @product }
-    end
+	begin
+		@product = Product.find(params[:id])
+		rescue ActiveRecord::RecordNotFound
+			@product=nil
+	end
+		respond_to do |format|
+			if @product
+				format.html # show.html.erb
+				format.xml  { render :xml => @product }
+			else
+				format.html { render :template => "error_pages/404.html", :status => 404, :layout => false}
+				# format.html{ redirect_to(products_path, :notice => 'ha ha') }
+				format.xml  { head :not_found }
+			end
+		end
+	
   end
 
   # GET /products/new

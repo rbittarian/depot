@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Product do
   #pending "add some examples to (or delete) #{__FILE__}"
-  
+
   before(:each) do
 	@attr={:title => "Book of Awesome",:description=>"some description", :price => "125.00", :image_url => "image/abc.jpg"}
   end

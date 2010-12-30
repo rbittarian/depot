@@ -37,7 +37,7 @@ describe ProductsController do
 		end
 		describe "success" do
 			it "should be successful" do
-				get :show, :id => @product.id
+				get :show, :id => @product
 				response.should be_success
 			end
 		end
@@ -46,8 +46,14 @@ describe ProductsController do
 	
 	
 	describe "GET 'edit'" do
-	
+		before(:each) do
+			@product=Factory(:product)
+		end
 		
+		it "should be successful" do
+			get :edit, :id => @product
+			response.should be_success
+		end
 	end
 
 	describe "POST 'create'" do
