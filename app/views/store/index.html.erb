@@ -1,17 +1,18 @@
 <%if notice%>
 	<p id="notice"><%= notice %></p>
 <%end%>
+<%if @view_counter > 5%>
+	<h3>You have viewed this page <%= pluralize(@view_counter, 'time')%></h3>
+<% end %>
 <h1>Your Pragmatic Catalog</h1>
-	<div class="entry">
-		<h3>Hello</h3>
-	</div>
 	<%@products.each do |product|%>
 		<div class="entry">
-			<%= image_tag(product.image_url) %>
+			<%= link_to image_tag(product.image_url), line_items_path(:product_id => product), :method => :post  %>
 			<h3><%= product.title %></h3>
 			<%=raw product.description%>
 			<div class="price_line">
 				<span class="price"><%= number_to_currency(product.price, :unit => "&pound;")%></span>
+			<%= button_to 'Add to Cart', line_items_path(:product_id => product)%>
 			</div>
 		</div>
 	<%end%>

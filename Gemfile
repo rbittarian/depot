@@ -20,8 +20,8 @@ end
 group :test do
 	gem 'spork', '0.8.4'
 	gem 'factory_girl_rails', '1.0'
-	gem 'rspec', '2.3.0'
-	gem 'rspec-rails', '2.3.1'
+	gem 'rspec' #, '2.3.0'
+	gem 'rspec-rails' #, '2.3.1'
 end
 
 # Use unicorn as the web server

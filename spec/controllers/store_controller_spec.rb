@@ -21,7 +21,11 @@ end
 		@response.should have_selector("div#columns div#side a", :count => 4 )
 		@response.should have_selector(:title, :content => "Pragprog online")
 		@response.should have_selector("div.entry h3", :content => @product.title)
-		@response.should have_selector("div.price_line span.price", :content => '$75.00')
+		#had to extract tags from description to get this test to work
+		description_without_tags=@product.description.gsub(/<p>|<\/p>/,'')
+		@response.should have_selector("div.entry p", :content => description_without_tags )
+		
+		@response.should have_selector("div.price_line span.price")
 	end
   end
 

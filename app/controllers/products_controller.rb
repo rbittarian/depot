@@ -13,9 +13,9 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.xml
   def show
-	begin
+    begin  
 		@product = Product.find(params[:id])
-		rescue ActiveRecord::RecordNotFound
+	rescue ActiveRecord::RecordNotFound
 			@product=nil
 	end
 		respond_to do |format|

@@ -8,27 +8,40 @@ describe ProductsController do
 		
 		before(:each) do
 			@product=Factory(:product)
+			get 'index'
+			@response=response
 		end
-		describe "success" do
-			it "should be successful" do
-				get 'index'
-				response.should be_success
+			
+		it "should respond successfully" do
+				@response.should be_success
+		end
+		context "verify  html tags" do
+			it "should have correct truncated description" do
+				#had to extract tags from description  and fake truncation to get this test to work
+				truncated_description_without_tags=@product.description.gsub(/<p>|<\/p>/,'')[0,77] + '...' 
+				@response.should have_selector("table td.list_description dl dd", :content => truncated_description_without_tags )
 			end
-			it "should have correct html tags" do
-				get 'index'
-				response.should have_selector("tr")
-			end
+		
 		end
 	end
 	
 	
 	describe "GET 'new'" do
-		describe "success" do
-			it "should be successful" do
-				get 'new'
-				response.should be_success
-			end
+		before(:each) do
+			get 'new'
+			@response=response
 		end
+			it "should respond successfully" do
+				@response.should be_success
+			end
+			context "verify html tags" do
+				it "should have correct heading" do
+					@response.should have_selector("div#main h1", :content => "New product")
+				end
+				it "should have correct html fields for form" do
+					@response.should have_selector("div#main div.field label", :for => "product_title", :content => "Title")
+				end
+			end
 	end
 	
 	describe "GET 'show'" do
