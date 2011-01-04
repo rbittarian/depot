@@ -7,6 +7,9 @@ Factory.define :product do |product|
 	
 end
 
+Factory.define :cart do |cart|
+end
+
 # Factory.sequence :email do |n|
 	# "person-#{n}@example.com" 
 # end
