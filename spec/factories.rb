@@ -1,6 +1,6 @@
 Factory.define :product do |product|
 	
-	product.title					"Book of Awesomeness"
+	product.sequence(:title)	{ |n| "Book of Awesomeness #{n}" }
 	product.price					"75"
 	product.description				"<p>No words to explain this book. But the fox could have done a better job explaining it</p>"
 	product.image_url				"images/kpg.jpg"
@@ -9,6 +9,13 @@ end
 
 Factory.define :cart do |cart|
 end
+
+# Factory.define :line_item do |line_item|
+		# line_item.association :product
+		# line_item.association :cart	
+# end
+
+###############references#####
 
 # Factory.sequence :email do |n|
 	# "person-#{n}@example.com" 
