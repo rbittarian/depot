@@ -12,12 +12,16 @@ describe LineItemsController do
 			post :create, :product_id => @product.id
 		end.should change(LineItem, :count).by(1)
 	end
-	
-	it "should redirect to cart of the current line item" do
-			post :create, :product_id => @product.id
-			line_item=assigns(:line_item)
-			response.should redirect_to(cart_path(line_item.cart))
+	it "should redirect to store " do
+		post :create, :product_id => @product.id
+		line_item=assigns(:line_item)
+		 response.should redirect_to(store_path)
 	end
+	# it "should redirect to cart of the current line item" do
+			# post :create, :product_id => @product.id
+			# line_item=assigns(:line_item)
+			# response.should redirect_to(cart_path(line_item.cart))
+	# end
 
 	context "adding multiple duplicate products to cart" do
 		before(:each) do
