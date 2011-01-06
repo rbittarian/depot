@@ -3,13 +3,10 @@ require 'spec_helper'
 describe StoreController do
 render_views
 
-before(:each) do
-			@product=Factory(:product)
-end
-
   describe "GET 'index'" do
   
 		before(:each) do
+			@product=Factory(:product)
 			get :index
 			@response=response
 		end
@@ -28,5 +25,13 @@ end
 		@response.should have_selector("div.price_line span.price")
 	end
   end
-
+  
+  describe "Cart functionality" do
+	before(:each) do
+		p1=Factory(:product)
+		p2=Factory(:product)
+		p3=Factory(:product)
+	end
+		
+  end
 end

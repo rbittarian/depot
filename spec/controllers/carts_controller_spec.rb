@@ -43,5 +43,39 @@ describe CartsController do
 		end
 	end
 	
+	 describe "Cart functionality" do
+	
+		it "should add a product to the cart" do
+			p=Factory(:product)
+			@cart.add_product(p.id,p.price)
+		end
+	
+		it "should create only one line item entry for the same product added mutliple times" do
+			p=Factory(:product)
+			3.times do
+				@cart.add_product(p.id,p.price)
+			end
+			@cart.line_items.count.should == 1
+		end
+		
+		it "should create a line item for each different product added" do
+			5.times do
+				p=Factory(:product)
+				@cart.add_product(p.id,p.price)
+			end
+			@cart.line_items.count.should == 5
+	    end
+		
+		it "should set the product price on the line item" do
+			p=Factory(:product)
+			@cart.add_product(p.id,p.price)
+			#@cart.line_items.where("product_id == ?",p.id).first.price.should == p.price
+			@cart.line_items.select {|i| i.product_id == p.id }.first.price.should == p.price
+		end
+		
+	
+	  
+	 end
+	
 end
 
