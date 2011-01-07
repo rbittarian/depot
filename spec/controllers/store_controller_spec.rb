@@ -32,6 +32,8 @@ render_views
 		p2=Factory(:product)
 		p3=Factory(:product)
 	end
+	
+	
 		
   end
 end

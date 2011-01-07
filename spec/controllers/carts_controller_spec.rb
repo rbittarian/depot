@@ -37,10 +37,10 @@ describe CartsController do
 				response.should redirect_to(store_url)
 		end
 		
-		it "should display appropriate message" do
-			delete :destroy, :id => @cart.to_param
-			flash[:notice].should =~ /Your cart is currently empty/
-		end
+		# it "should display appropriate message" do
+			# delete :destroy, :id => @cart.to_param
+			# flash[:notice].should =~ /Your cart is currently empty/
+		# end
 	end
 	
 	 describe "Cart functionality" do

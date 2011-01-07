@@ -1,6 +1,5 @@
 require 'spec_helper'
 
-
 describe LineItemsController do
 	render_views
   context "POST 'create'" do
@@ -12,6 +11,20 @@ describe LineItemsController do
 			post :create, :product_id => @product.id
 		end.should change(LineItem, :count).by(1)
 	end
+	
+	it "should create a line item via ajax" do
+		lambda do
+			xhr :post, :create, :product_id => @product.id
+		end.should change(LineItem, :count).by(1)
+	end
+	
+	it "should have replace correct html content in the cart display" do
+		xhr :post, :create, :product_id => @product.id
+		assert_select_rjs :replace_html, 'cart' do
+				assert_select 'tr#current_item td',/#{@product.title}/
+		end
+	end
+	
 	it "should redirect to store " do
 		post :create, :product_id => @product.id
 		line_item=assigns(:line_item)
