@@ -63,7 +63,7 @@ class LineItemsController < ApplicationController
   # PUT /line_items/1.xml
   # def update
     # @line_item = LineItem.find(params[:id])
-
+	
     # respond_to do |format|
       # if @line_item.update_attributes(params[:line_item])
         # format.html { redirect_to(@line_item, :notice => 'Line item was successfully updated.') }
@@ -74,16 +74,19 @@ class LineItemsController < ApplicationController
       # end
     # end
   # end
-
   # DELETE /line_items/1
   # DELETE /line_items/1.xml
   def destroy
-    @line_item = LineItem.find(params[:id])
-    @line_item.destroy
-
+	@cart = current_cart
+	@line_item = LineItem.find(params[:id])
+	@mod_line_item=@cart.remove_product(@line_item.product_id)
+    # @line_item = LineItem.find(params[:id])
+    # @line_item.destroy
+	@mod_line_item.save if @mod_line_item
     respond_to do |format|
-      format.html { redirect_to(cart_path(current_cart)) }
-      format.xml  { head :ok }
-    end
+			format.html { redirect_to(store_url) }
+			format.js { }
+			format.xml  { head :ok }
+	end
   end
 end

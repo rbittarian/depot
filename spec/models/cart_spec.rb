@@ -9,6 +9,6 @@ describe Cart do
 		cart.line_items.product.count.should == 1
 	end
 	
-
+	
 
 end

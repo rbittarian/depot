@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe LineItemsController do
 	render_views
-  context "POST 'create'" do
+  describe "POST 'create'" do
 	before(:each) do
 			@product=Factory(:product)
 	end
@@ -73,4 +73,17 @@ describe LineItemsController do
 	end
 	
   end
+  
+ # describe "delete 'DESTROY'" do
+		# context "removing products from cart" do
+			# it "should reduce the quantity correctly" do
+				# p=Factory(:product)
+				# l=Factory(:line_item, :product => p)
+				# l.add_product(p.id, p.price)
+				# delete :destroy, :id => l.id
+				# response.should be_success
+			# end
+	# end
+ # end
+  
 end

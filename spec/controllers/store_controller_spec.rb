@@ -23,6 +23,7 @@ render_views
 		@response.should have_selector("div.entry p", :content => description_without_tags )
 		
 		@response.should have_selector("div.price_line span.price")
+		@response.should have_selector("div#cart", :style => "display: none")
 	end
   end
   

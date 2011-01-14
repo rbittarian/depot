@@ -73,7 +73,6 @@ describe CartsController do
 			@cart.line_items.select {|i| i.product_id == p.id }.first.price.should == p.price
 		end
 		
-	
 	  
 	 end
 	

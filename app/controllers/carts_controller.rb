@@ -74,6 +74,7 @@ class CartsController < ApplicationController
       # end
     # end
   # end
+ 
 
   # DELETE /carts/1
   # DELETE /carts/1.xml
@@ -83,6 +84,7 @@ class CartsController < ApplicationController
 	session[:cart_id]=nil
     respond_to do |format|
       format.html { redirect_to(store_url) }
+	  format.js { }
       format.xml  { head :ok }
     end
   end

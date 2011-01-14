@@ -12,6 +12,20 @@ class Cart < ActiveRecord::Base
 		current_item
 	end
 	
+	def remove_product(product_id)
+		current_item=line_items.where(:product_id => product_id).first
+		if current_item
+			if current_item.quantity > 1
+				current_item.quantity-=1
+				return current_item
+			else
+				current_item.destroy
+				return nil
+			end
+		end
+	end
+	
+
 	def total_price
 		line_items.to_a.sum {|item| item.total_price}
 	end

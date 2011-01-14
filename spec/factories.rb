@@ -10,10 +10,18 @@ end
 Factory.define :cart do |cart|
 end
 
-# Factory.define :line_item do |line_item|
-		# line_item.association :product
-		# line_item.association :cart	
-# end
+Factory.define :line_item do |line_item|
+		line_item.association :product
+		line_item.association :cart	
+		line_item.association :order
+end
+
+Factory.define :order do |order|
+	order.name		"Yuri"
+	order.email		"Yuri@gattaca.com"
+	order.pay_type	"Check"
+	order.address   "7201 Baker Street"
+end
 
 ###############references#####
 
