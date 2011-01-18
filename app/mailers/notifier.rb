@@ -22,4 +22,13 @@ class Notifier < ActionMailer::Base
 
     mail :to => order.email, :subject => 'Pragprog Order shipped'
   end
+  
+  def notify_admin(message)
+	@admin_email="admin@depot.com"
+	@message = message
+	@time=Time.now
+	 mail :to => @admin_email, :subject => 'System failure error'
+  end
+  
+  
 end

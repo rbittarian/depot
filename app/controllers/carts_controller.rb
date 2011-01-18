@@ -18,6 +18,7 @@ class CartsController < ApplicationController
 		@cart = Cart.find(params[:id])
 	rescue ActiveRecord::RecordNotFound
 		logger.error "Attempt to access invalid cart id #{params[:id]}"
+		Notifier.notify_admin("Attempt to access invalid cart id #{params[:id]}").deliver
 		redirect_to store_url, :notice => "invalid cart"
 	else
 		respond_to do |format|

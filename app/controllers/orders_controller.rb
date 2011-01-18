@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
 
-	skip_before_filter :verify_authenticity_token, :only => [:create]
+	skip_before_filter :verify_authenticity_token, :only => [:create, :update]
   # GET /orders
   # GET /orders.xml
   def index
@@ -43,6 +43,7 @@ class OrdersController < ApplicationController
   # GET /orders/1/edit
   def edit
     @order = Order.find(params[:id])
+	@order_edit = true
   end
 
   # POST /orders
@@ -69,9 +70,12 @@ class OrdersController < ApplicationController
   # PUT /orders/1.xml
   def update
     @order = Order.find(params[:id])
-
+	@order.attributes=params[:order]
+	@ship_date_changed=@order.changed_attributes.include?("ship_date")
+	
     respond_to do |format|
-      if @order.update_attributes(params[:order])
+      if @order.save
+		Notifier.order_shipped(@order).deliver if @ship_date_changed
         format.html { redirect_to(@order, :notice => 'Order was successfully updated.') }
         format.xml  { head :ok }
       else
