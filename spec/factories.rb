@@ -19,7 +19,7 @@ end
 Factory.define :order do |order|
 	order.name		"Yuri"
 	order.email		"Yuri@gattaca.com"
-	order.pay_type	"Check"
+	order.pay_type	"check"
 	order.address   "7201 Baker Street"
 end
 
