@@ -23,6 +23,12 @@ Factory.define :order do |order|
 	order.address   "7201 Baker Street"
 end
 
+Factory.define :user do |user|
+	user.name 						 "Sam Ruby"
+	user.password 					 "pass"
+	user.password_confirmation		 "pass"
+end
+
 ###############references#####
 
 # Factory.sequence :email do |n|
