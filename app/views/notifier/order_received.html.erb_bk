@@ -1,0 +1,13 @@
+<h3>Pragmatic Order Shipped</h3>
+	<p>
+			We recieved your order:
+	</p>
+<table>
+	<tr>
+		<th colspan="2">Qty</th>
+		<th>Description</th>
+	</tr>
+	<%= render @order.line_items %>
+</table>
+
+<p>We'll send you an email when the order is shipped</p>

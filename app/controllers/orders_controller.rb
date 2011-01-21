@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
 
-	skip_before_filter :verify_authenticity_token, :only => [:create, :update]
+	#skip_before_filter :verify_authenticity_token, :only => [:create, :update]
   # GET /orders
   # GET /orders.xml
   def index
