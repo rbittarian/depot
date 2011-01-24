@@ -8,8 +8,10 @@ Spork.prefork do
   # need to restart spork for it take effect.
 	# This file is copied to ~/spec when you run 'ruby script/generate rspec'
 		# from the project root directory.
-	ENV["RAILS_ENV"] ||= 'test'
-	require File.expand_path("../../config/environment", __FILE__)
+ ENV["RAILS_ENV"] ||= 'test'
+ # unless defined?(Rails)
+    require File.dirname(__FILE__) + "/../config/environment"
+  #end
 	require 'rspec/rails'
 
 	# Requires supporting files with custom matchers and macros, etc,
@@ -43,6 +45,21 @@ Spork.prefork do
 		# Emulate initializer set_clear_dependencies_hook in mmm
 		# railties/lib/rails/application/bootstrap.rb
 		ActiveSupport::Dependencies.clear
+		
+		def test_sign_in_as(user)
+			session[:user_id]=user.id if defined? session
+		end
+		
+		def test_sign_out
+			session.delete :user_id
+		end
+		
+		def integration_sign_in_as(user)
+			visit login_path
+			fill_in "Name", :with => user.name
+			fill_in "Password", :with => user.password
+			click_button "Log In"
+		end
 	
 	end
 end

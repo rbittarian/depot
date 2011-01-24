@@ -3,7 +3,9 @@ require 'spec_helper'
 describe ProductsController do
 	render_views
 	
-	
+	before(:each) do
+		test_sign_in_as(Factory(:user))
+	end
 	describe "GET 'index'" do
 		
 		before(:each) do

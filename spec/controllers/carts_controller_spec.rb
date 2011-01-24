@@ -7,9 +7,14 @@ describe CartsController do
 		@cart=Factory(:cart)
 		####session variable should be set to mimic cart creation; ie to make the cart the current user's cart###
 		session[:cart_id]=@cart.id
+		
 	end
 	
 	describe "GET 'show'" do
+		before(:each) do
+			###sign in the user
+			test_sign_in_as(Factory(:user))
+		end
 		it "should display the cart contents" do
 			get :show, :id => @cart.id
 			response.should be_success

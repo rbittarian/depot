@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+ skip_before_filter :authorize, :except => [:destroy]
+ 
   # GET /users
   # GET /users.xml
   def index
@@ -40,9 +43,9 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.xml
   def create
-    @user = User.new(params[:user])
+    @user = User.new(params[:user]) 
 
-    respond_to do |format|
+    respond_to do |format| 
       if @user.save
         format.html { redirect_to(users_url, :notice => "User #{@user.name} was successfully created.") }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
@@ -62,7 +65,7 @@ class UsersController < ApplicationController
       if @user.update_attributes(params[:user])
         format.html { redirect_to(users_url, :notice => "User #{@user.name} was successfully updated.") }
         format.xml  { head :ok }
-      else
+      else 
         format.html { render :action => "edit" }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end

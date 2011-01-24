@@ -58,7 +58,9 @@ describe "UserStories" do
 			mail.from.should == ["depot@example.com"]
 			mail.subject.should == "Pragprog Order Confirmation"
 			
-			###updating the order ship_date should send out an email
+			###updating the order ship_date should send out an email (this is done by an admin)
+			user=Factory(:user)
+			integration_sign_in_as(user)
 			put_via_redirect "/orders/#{order.id}", :order => order_attr.merge(:ship_date => "jan 4 2007") 
 			response.should be_success
 			mail=ActionMailer::Base.deliveries.last
@@ -68,6 +70,9 @@ describe "UserStories" do
 	
 	describe "system failure emails" do
 		it "should send notification when invalid cart chosen" do
+			user=Factory(:user)
+			integration_sign_in_as(user)
+			#session[:user_id]=user.id
 			get "/carts/invalid"
 			mail=ActionMailer::Base.deliveries.last
 			mail.to.should == ["admin@depot.com"]

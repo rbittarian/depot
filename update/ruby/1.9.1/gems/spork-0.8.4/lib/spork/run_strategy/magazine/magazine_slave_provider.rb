@@ -2,7 +2,7 @@
 require 'drb'
 require 'rinda/ring'
 require 'rinda/tuplespace'
-require 'magazine_slave'
+require './magazine_slave.rb'
 
 
 
@@ -19,7 +19,9 @@ DRb.start_service
 Dir.chdir app_pwd
 puts "   -- build slave #{id}..."; $stdout.flush
 magazine_slave = MagazineSlave.new(id, test_framework_short_name )
-Rinda::RingProvider.new(:MagazineSlave, magazine_slave, id).provide
+###fix for No Tuple error
+renewer = Rinda::SimpleRenewer.new
+Rinda::RingProvider.new(:MagazineSlave, magazine_slave, id, renewer).provide
 
 puts "  --> DRb magazine_slave_service: #{id} provided..."; $stdout.flush
 
