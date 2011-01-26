@@ -4,6 +4,9 @@ require 'spec_helper'
 describe UsersController do
 	render_views
    
+   before(:each) do
+		test_sign_in_as(Factory(:user, :name => "temp"))
+   end
    
    describe "POST 'create'" do
 		   before(:each) do

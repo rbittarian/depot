@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
- skip_before_filter :authorize, :except => [:destroy]
+ #skip_before_filter :authorize, : => [:destroy]
  
   # GET /users
   # GET /users.xml
