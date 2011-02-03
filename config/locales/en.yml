@@ -20,7 +20,14 @@ en:
         delimiter: ","
         format:    "%u%n"
 #END:currency
-
+#START:errors
+ # errors:
+ #  # template:
+   ##   body:        "There were errors"
+   #   header:
+    #    one:       "1 error has prevented this %{model} from being created"
+       # other:     "%{count} have prevented this %{model} from being created"
+#END:errors
 #START:layout
   layouts:
     application:

@@ -28,6 +28,14 @@ es:
 #START:model
 #START:errors
   activerecord:
+    models:
+      order: "pedido"
+    attributes:
+      order:
+        address: "Dirrecci&oacute;n"
+        name: "Nombre"
+        email: "E-mail"
+        pay_type: Forma de pago
 #END:errors
 #END:model
 #START:errors
@@ -38,7 +46,7 @@ es:
   errors:
     template:
       body:        "Hay problemas con los siguientes campos:"
-      header:
+      header: 
         one:       "1 error ha impedido que este %{model} se guarde"
         other:     "%{count} errores han impedido que este %{model} se guarde"
 #END:errors
