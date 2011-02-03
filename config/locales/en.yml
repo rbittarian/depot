@@ -66,6 +66,13 @@ en:
       submit:       "Place Order"
 #END:checkout
 
+##START: PAYMENT_TYPE
+  order_pay_types:
+    check:      "Check"
+    credit_card: "Credit Card"
+    purchase_order: "Purchase Order"
+##END: PAYMENT_TYPE
+
 #START:flash
   thanks:          "Thank you for your order"
 #END:flash

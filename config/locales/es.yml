@@ -89,6 +89,14 @@ es:
       submit:       "Realizar Pedido"
 #END:checkout
 
+##START: PAYMENT_TYPE
+  order_pay_types:   
+    check:      "Cheque"
+    credit_card: "Tarjetas de Credito"
+    purchase_order: "Orden de Compra"
+##END: PAYMENT_TYPE
+
+
 #START:flash
   thanks:          "Gracias por su pedido"
 #END:flash

@@ -4,7 +4,7 @@ Factory.define :product do |product|
 	product.price					"75"
 	product.description				"<p>No words to explain this book. But the fox could have done a better job explaining it</p>"
 	product.image_url				"images/kpg.jpg"
-	
+	product.locale					"en" 
 end
 
 Factory.define :cart do |cart|
